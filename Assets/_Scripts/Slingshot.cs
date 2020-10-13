@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
-  
-    
+
+    static private Slingshot S;  
     [Header("Set in Inspector")]
     public GameObject prefabProjectile;
     [Header("Set Dynamically")]
@@ -16,10 +16,18 @@ public class Slingshot : MonoBehaviour
     public float velocityMult = 8f;
     private Rigidbody projectileRigidbody;
 
-
+    static public Vector3 LAUNCH_POS
+    {
+        get
+        {
+            if (S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+    }
 
     void Awake()
     {
+        S = this;
         Transform launchPointTrans = transform.Find("LaunchPoint");
 
         launchPoint = launchPointTrans.gameObject;
@@ -29,6 +37,7 @@ public class Slingshot : MonoBehaviour
 
     void Update()
     {
+        
         if (!aimingMode)
             return;
 
@@ -51,10 +60,13 @@ public class Slingshot : MonoBehaviour
 
         if(Input.GetMouseButtonUp(0))
         {
+            print("shot");
             aimingMode = false;
             projectileRigidbody.isKinematic = false;
             projectileRigidbody.velocity = -mouseDelta * velocityMult;
+            print(FollowCam.POI);
             FollowCam.POI = projectile;
+          
             projectile = null;
         }
     }
@@ -79,5 +91,10 @@ public class Slingshot : MonoBehaviour
 
         projectileRigidbody = projectile.GetComponent<Rigidbody>();
         projectileRigidbody.isKinematic = true;
+    }
+
+    void Start()
+    {
+        print("Shot");
     }
 }

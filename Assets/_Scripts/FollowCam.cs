@@ -7,20 +7,36 @@ public class FollowCam : MonoBehaviour
     static public GameObject POI;
     [Header("Set in Inspector")]
     public float easing = 0.05f;
+    public float test = 0f;
     public Vector2 minXY = Vector2.zero;
     [Header("Set Dynamically")]
     public float camZ;
-    
+
     void Awake()
     {
         camZ = this.transform.position.z;
     }
     void FixedUpdate()
     {
-        if (POI == null) return;
+        Vector3 destination;
+        if (POI == null)
+        {
+            destination = Vector3.zero;
+        }
+        else
+        {
+            destination = POI.transform.position;
+        }
 
-        Vector3 destination = POI.transform.position;
-       
+        if (POI.tag == "Projectile")
+        {
+            if (POI.GetComponent<Rigidbody>().IsSleeping())
+            {
+                POI = null;
+                return;
+            }
+        }
+
         destination.x = Mathf.Max(minXY.x, destination.x);
         destination.y = Mathf.Max(minXY.y, destination.y);
 
@@ -36,12 +52,12 @@ public class FollowCam : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        print(Slingshot.LAUNCH_POS);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

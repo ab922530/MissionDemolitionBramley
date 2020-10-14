@@ -26,14 +26,15 @@ public class FollowCam : MonoBehaviour
         else
         {
             destination = POI.transform.position;
-        }
 
-        if (POI.tag == "Projectile")
-        {
-            if (POI.GetComponent<Rigidbody>().IsSleeping())
+
+            if (POI.tag == "Projectile")
             {
-                POI = null;
-                return;
+                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                {
+                    POI = null;
+                    return;
+                }
             }
         }
 
@@ -50,10 +51,7 @@ public class FollowCam : MonoBehaviour
 
     }
     // Start is called before the first frame update
-    void Start()
-    {
-        print(Slingshot.LAUNCH_POS);
-    }
+   
 
     // Update is called once per frame
     void Update()

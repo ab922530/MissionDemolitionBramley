@@ -15,12 +15,12 @@ public class Slingshot : MonoBehaviour
     public bool aimingMode;
     public float velocityMult = 8f;
     private Rigidbody projectileRigidbody;
-
     static public Vector3 LAUNCH_POS
     {
         get
         {
-            if (S == null) return Vector3.zero;
+            if (S == null) return 
+               Vector3.zero;
             return S.launchPos;
         }
     }
@@ -57,7 +57,7 @@ public class Slingshot : MonoBehaviour
 
         Vector3 projPos = launchPos + mouseDelta;
         projectile.transform.position = projPos;
-
+       // print("aiming currently");
         if(Input.GetMouseButtonUp(0))
         {
             print("shot");

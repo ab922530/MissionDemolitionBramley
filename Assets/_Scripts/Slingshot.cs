@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Slingshot : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Slingshot : MonoBehaviour
     public bool aimingMode;
     public float velocityMult = 8f;
     private Rigidbody projectileRigidbody;
+    public Text scoreGT;
     static public Vector3 LAUNCH_POS
     {
         get
@@ -68,6 +70,8 @@ public class Slingshot : MonoBehaviour
             FollowCam.POI = projectile;
           
             projectile = null;
+            MissionDemolition.ShotsFired();
+            ProjectileLine.S.poi = projectile;
         }
     }
 
@@ -95,6 +99,8 @@ public class Slingshot : MonoBehaviour
 
     void Start()
     {
-        print("Shot");
+        //GameObject scoreGO = GameObject.Find("Score");
+      //  scoreGT = scoreGO.GetComponent<Text>();
+      //  scoreGT.text = "Score: " + levelScore; 
     }
 }

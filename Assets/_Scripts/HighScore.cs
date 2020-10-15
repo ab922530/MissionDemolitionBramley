@@ -47,6 +47,7 @@ public class HighScore : MonoBehaviour
             if ((highscore[0] < PlayerPrefs.GetInt("HighScore0", highscore[0])) || PlayerPrefs.GetInt("HighScore0") == 0)
             {
                 PlayerPrefs.SetInt("HighScore0", highscore[0]);
+                gt.text = "High Score: " + highscore[MissionDemolition.level];
             }
         }
 
@@ -55,6 +56,7 @@ public class HighScore : MonoBehaviour
             if ((highscore[1] < PlayerPrefs.GetInt("HighScore1", highscore[1])) || PlayerPrefs.GetInt("HighScore1") == 0)
             {
                 PlayerPrefs.SetInt("HighScore1", highscore[1]);
+                gt.text = "High Score: " + highscore[MissionDemolition.level];
             }
         }
 
@@ -63,6 +65,7 @@ public class HighScore : MonoBehaviour
             if ((highscore[2] < PlayerPrefs.GetInt("HighScore2", highscore[2])) || PlayerPrefs.GetInt("HighScore2") == 0)
             {
                 PlayerPrefs.SetInt("HighScore2", highscore[2]);
+                gt.text = "High Score: " + highscore[MissionDemolition.level];
             }
         }
 
@@ -71,8 +74,9 @@ public class HighScore : MonoBehaviour
             if ((highscore[3] < PlayerPrefs.GetInt("HighScore3", highscore[3])) || PlayerPrefs.GetInt("HighScore3") == 0)
             {
                 PlayerPrefs.SetInt("HighScore3", highscore[3]);
+                gt.text = "High Score: " + highscore[MissionDemolition.level];
             }
         }
-        // gt.text = highscore[MissionDemolition.level];
+       
     }
 }

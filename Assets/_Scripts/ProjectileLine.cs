@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ProjectileLine : MonoBehaviour
 {
@@ -11,7 +12,8 @@ public class ProjectileLine : MonoBehaviour
     private LineRenderer line;
     private GameObject _poi;
     private List<Vector3> points;
-
+    public Button clearer;
+  
     void Awake()
     {
         S = this;
@@ -21,6 +23,9 @@ public class ProjectileLine : MonoBehaviour
         line.enabled = false;
 
         points = new List<Vector3>();
+      
+
+        
     }
     public GameObject poi
     {
@@ -32,13 +37,17 @@ public class ProjectileLine : MonoBehaviour
         {
             _poi = value;
             if(_poi != null)
-            {
-                line.enabled = false;
-                points = new List<Vector3>();
-                AddPoint();
+            { 
+               line.enabled = false;
+               AddPoint();
             }
         }
     }
+    public void Start()
+    {
+        clearer.onClick.AddListener(Clear);
+    }
+  
     public void Clear()
     {
         _poi = null;
